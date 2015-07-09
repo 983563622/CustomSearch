@@ -64,9 +64,13 @@
     MyCell *cell = [MyCell cellWithTableView:tableView];
     
     if ([tableView isEqual:self.myTableView] == YES)
+    {
         [cell.textLabel setText:[self.dataSource objectAtIndex:indexPath.row]];
+    }
     else
+    {
         [cell.textLabel setText:[self.filterSource objectAtIndex:indexPath.row]];
+    }
     
     return cell;
 }
@@ -94,7 +98,6 @@
     {
         [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
     }
-    
 }
 
 - (void)searchDisplayController:(UISearchDisplayController *)controller willShowSearchResultsTableView:(UITableView *)tableView
@@ -110,12 +113,6 @@
         [tableView setScrollIndicatorInsets:UIEdgeInsetsZero];
     }
     
-//    [self hideTabBar];
-    
-//    [self.tabBarController setTabBarHidden:YES animated:YES];
-    
-//    self.extendedLayoutIncludesOpaqueBars = true;
-    
     if (IOS8_OR_LATER || IOS7_OR_LATER)
         [self.tabBarController hideTabBarAnimated:NO];
     
@@ -123,10 +120,6 @@
 
 - (void)searchDisplayController:(UISearchDisplayController *)controller willHideSearchResultsTableView:(UITableView *)tableView
 {
-//    [self showTabBar];
-    
-//    [self.tabBarController setTabBarHidden:NO animated:YES];
-    
     if (IOS8_OR_LATER || IOS7_OR_LATER)
         [self.tabBarController showTabBarAnimated:NO];
 }
@@ -134,7 +127,6 @@
 #pragma mark - event response
 - (void)keyboardWillHide
 {
-    
     UITableView *tableView = [[self searchDisplayController] searchResultsTableView];
     
     [tableView setContentInset:UIEdgeInsetsZero];
@@ -145,7 +137,6 @@
 
 - (void)keyboardWillHide:(NSNotification*)notification
 {
-    
     CGFloat height = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height;
     UITableView *tableView = [[self searchDisplayController] searchResultsTableView];
     UIEdgeInsets inset;
@@ -158,22 +149,6 @@
 }
 
 #pragma mark - private methods
-- (void)hideTabBar
-{
-    if (self.tabBarController.tabBar.hidden == YES)
-        return;
-    
-    self.tabBarController.tabBar.hidden = YES;
-}
-
-- (void)showTabBar
-{
-    if (self.tabBarController.tabBar.hidden == NO)
-        return;
-    
-    self.tabBarController.tabBar.hidden = NO;
-}
-
 - (void)setupUIScreen
 {
     if ([self respondsToSelector:@selector(edgesForExtendedLayout)] == YES)

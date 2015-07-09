@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>4DB80725-E10D-419A-A5FE-5401CA86BF2A</string>
+	<key>IDESourceControlProjectName</key>
+	<string>CustomSearch</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>7BC5579B0784545809888DE0AE6BAF1B11EC1ED8</key>
+		<string>https://github.com/BossKing/CustomSearch.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>CustomSearch.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>7BC5579B0784545809888DE0AE6BAF1B11EC1ED8</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/BossKing/CustomSearch.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>7BC5579B0784545809888DE0AE6BAF1B11EC1ED8</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>7BC5579B0784545809888DE0AE6BAF1B11EC1ED8</string>
+			<key>IDESourceControlWCCName</key>
+			<string>CustomSearch</string>
+		</dict>
+	</array>
+</dict>
+</plist>

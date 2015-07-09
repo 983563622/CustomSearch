@@ -19,12 +19,14 @@ CGRect tmpRect;
 {
     CGRect viewFrame = self.view.frame;
     CGRect tabBarFrame = self.tabBar.frame;
+    
     return tabBarFrame.origin.y >= viewFrame.size.height;
 }
 
 - (void)setTabBarFrame
 {
     CGRect tabBarFrame = self.tabBar.frame;
+    
     tabBarFrame.origin.y = self.view.frame.size.height - tabBarFrame.size.height;
 }
 
@@ -43,11 +45,14 @@ CGRect tmpRect;
     if(hidden == isHidden)
     {
         transitionView.frame = tmpRect;
+        
         return;
     }
     
-    if(transitionView == nil) {
+    if(transitionView == nil)
+    {
         NSLog(@"could not get the container view!");
+        
         return;
     }
     
@@ -64,6 +69,7 @@ CGRect tmpRect;
     [UIView animateWithDuration:kAnimationDuration
                      animations:^{
                          self.tabBar.frame = tabBarFrame;
+                         
                          transitionView.frame = containerFrame;
     }];
 }
@@ -74,22 +80,20 @@ CGRect tmpRect;
     CGRect tabBarControllerViewFrame = self.view.frame;
     CGRect screenSize = [[UIScreen mainScreen] bounds];
     
-    
-//    if (self.tabBar.hidden == YES)
-//        return;
-//    
-//    self.tabBar.hidden = YES;
-    
     NSLog(@"%s:self.view.subviews = %@",__func__,self.view.subviews);
     
     if (IOS8_OR_LATER)
     {
         UIView *contentView;
         
-        if ([[self.view.subviews objectAtIndex:0] isKindOfClass:[UITabBar class]])
+        if ([[self.view.subviews objectAtIndex:0] isKindOfClass:[UITabBar class]] == YES)
+        {
             contentView = [self.view.subviews objectAtIndex:1];
+        }
         else
+        {
             contentView = [self.view.subviews objectAtIndex:0];
+        }
         
         contentView.frame = CGRectMake(contentView.bounds.origin.x,  contentView.bounds.origin.y,  contentView.bounds.size.width, contentView.bounds.size.height + self.tabBar.frame.size.height + kMargin);
     }
@@ -105,7 +109,7 @@ CGRect tmpRect;
         tabBarControllerViewFrame.size.height = screenSize.size.height + self.tabBar.frame.size.height;
     }
     
-    if (animated)
+    if (animated == YES)
     {
         [UIView animateWithDuration:0.2 animations:^{
             [self.view setFrame:tabBarControllerViewFrame];
@@ -114,7 +118,9 @@ CGRect tmpRect;
         }];
     }
     else
+    {
         [self.view setFrame:tabBarControllerViewFrame];
+    }
     
     NSLog(@"%s:tabBarControllerViewFrame = %@",__func__,NSStringFromCGRect(tabBarControllerViewFrame));
 }
@@ -132,12 +138,6 @@ CGRect tmpRect;
     CGRect statusbarFrame = [UIApplication sharedApplication].statusBarFrame;
     CGRect tabBarControllerFrame = self.view.frame;
     CGRect screenSize = [[UIScreen mainScreen] bounds];
-    
-    
-//    if (self.tabBar.hidden == NO)
-//        return;
-//    
-//    self.tabBar.hidden = NO;
     
     if (IOS8_OR_LATER)
     {
