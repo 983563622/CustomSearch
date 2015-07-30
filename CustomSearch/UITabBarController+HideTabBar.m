@@ -9,7 +9,7 @@
 #import "UITabBarController+HideTabBar.h"
 
 #define kAnimationDuration 3
-#define kMargin 100
+#define kMargin 0 // 100
 
 CGRect tmpRect;
 
@@ -18,6 +18,7 @@ CGRect tmpRect;
 - (BOOL)isTabBarHidden
 {
     CGRect viewFrame = self.view.frame;
+    
     CGRect tabBarFrame = self.tabBar.frame;
     
     return tabBarFrame.origin.y >= viewFrame.size.height;
@@ -40,6 +41,7 @@ CGRect tmpRect;
 - (void)setTabBarHidden:(BOOL)hidden animated:(BOOL)animated
 {
     BOOL isHidden = self.tabBar.hidden;
+    
     UIView *transitionView = [[[self.view.subviews reverseObjectEnumerator] allObjects] lastObject];
     
     if(hidden == isHidden)
@@ -57,7 +59,9 @@ CGRect tmpRect;
     }
     
     CGRect viewFrame = self.view.frame;
+    
     CGRect tabBarFrame = self.tabBar.frame;
+    
     CGRect containerFrame = transitionView.frame;
     
     tabBarFrame.origin.y = viewFrame.size.height - (hidden ? 0 : tabBarFrame.size.height);
@@ -67,7 +71,8 @@ CGRect tmpRect;
     tmpRect = containerFrame;
     
     [UIView animateWithDuration:kAnimationDuration
-                     animations:^{
+                     animations:^
+    {
                          self.tabBar.frame = tabBarFrame;
                          
                          transitionView.frame = containerFrame;
@@ -77,12 +82,14 @@ CGRect tmpRect;
 - (void)hideTabBarAnimated:(BOOL)animated
 {
     CGRect statusbarFrame = [UIApplication sharedApplication].statusBarFrame;
+    
     CGRect tabBarControllerViewFrame = self.view.frame;
+    
     CGRect screenSize = [[UIScreen mainScreen] bounds];
     
     NSLog(@"%s:self.view.subviews = %@",__func__,self.view.subviews);
     
-    if (IOS8_OR_LATER)
+    if (iOS8_OR_LATER)
     {
         UIView *contentView;
         
@@ -111,10 +118,13 @@ CGRect tmpRect;
     
     if (animated == YES)
     {
-        [UIView animateWithDuration:0.2 animations:^{
+        [UIView animateWithDuration:0.2 animations:^
+        {
             [self.view setFrame:tabBarControllerViewFrame];
-        } completion:^(BOOL finished) {
-            
+        }
+        completion:^(BOOL finished)
+        {
+    
         }];
     }
     else
@@ -136,10 +146,12 @@ CGRect tmpRect;
 - (void)showTabBarAnimated:(BOOL)animated
 {
     CGRect statusbarFrame = [UIApplication sharedApplication].statusBarFrame;
+    
     CGRect tabBarControllerFrame = self.view.frame;
+    
     CGRect screenSize = [[UIScreen mainScreen] bounds];
     
-    if (IOS8_OR_LATER)
+    if (iOS8_OR_LATER)
     {
         UIView *contentView;
         
@@ -162,14 +174,19 @@ CGRect tmpRect;
     
     if (animated)
     {
-        [UIView animateWithDuration:0.2 animations:^{
+        [UIView animateWithDuration:0.2 animations:^
+        {
             [self.view setFrame:tabBarControllerFrame];
-        } completion:^(BOOL finished) {
-            
+        }
+        completion:^(BOOL finished)
+        {
+    
         }];
     }
     else
+    {
         [self.view setFrame:tabBarControllerFrame];
+    }
 }
 
 @end

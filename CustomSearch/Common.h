@@ -10,10 +10,10 @@
 #define CustomSearch_Common_h
 
 // system version
-#define IOS8_OR_LATER [[[UIDevice currentDevice] systemVersion] doubleValue] >= 8.0
+#define iOS8_OR_LATER [[[UIDevice currentDevice] systemVersion] doubleValue] >= 8.0
 
-#define IOS7_OR_LATER [[[UIDevice currentDevice] systemVersion] doubleValue] >= 7.0
+#define iOS7_OR_LATER [[[UIDevice currentDevice] systemVersion] doubleValue] >= 7.0
 
-#define IOS6_OR_LATER [[[UIDevice currentDevice] systemVersion] doubleValue] >= 6.0
+#define iOS6_OR_LATER [[[UIDevice currentDevice] systemVersion] doubleValue] >= 6.0
 
 #endif

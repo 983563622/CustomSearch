@@ -86,42 +86,40 @@
 #pragma mark - UISearchDisplayDelegate
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
 {
-    NSLog(@"%s:searchString:%@",__func__,searchString);
-    
     // 刷新
     return YES;
 }
 
-- (void)searchDisplayController:(UISearchDisplayController *)controller didHideSearchResultsTableView:(UITableView *)tableView
-{
-    if (IOS8_OR_LATER)
-    {
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
-    }
-}
-
 - (void)searchDisplayController:(UISearchDisplayController *)controller willShowSearchResultsTableView:(UITableView *)tableView
 {
-    if (IOS8_OR_LATER)
+    if (iOS8_OR_LATER)
     {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     }
-    else if (IOS7_OR_LATER)
+    else if (iOS7_OR_LATER)
     {
         [tableView setContentInset:UIEdgeInsetsZero];
         
         [tableView setScrollIndicatorInsets:UIEdgeInsetsZero];
     }
     
-    if (IOS8_OR_LATER || IOS7_OR_LATER)
+    if (iOS7_OR_LATER)
         [self.tabBarController hideTabBarAnimated:NO];
     
 }
 
 - (void)searchDisplayController:(UISearchDisplayController *)controller willHideSearchResultsTableView:(UITableView *)tableView
 {
-    if (IOS8_OR_LATER || IOS7_OR_LATER)
+    if (iOS7_OR_LATER)
         [self.tabBarController showTabBarAnimated:NO];
+}
+
+- (void)searchDisplayController:(UISearchDisplayController *)controller didHideSearchResultsTableView:(UITableView *)tableView
+{
+    if (iOS8_OR_LATER)
+    {
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+    }
 }
 
 #pragma mark - event response
@@ -141,7 +139,7 @@
     UITableView *tableView = [[self searchDisplayController] searchResultsTableView];
     UIEdgeInsets inset;
     
-    inset = UIEdgeInsetsMake(0, 0, height + 100, 0);
+    inset = UIEdgeInsetsMake(0, 0, height, 0); // + 100
     
     [tableView setContentInset:inset];
     
